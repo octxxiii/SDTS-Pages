@@ -3,74 +3,199 @@
 <head>
     <title>SDTS Download</title>
     <meta charset="UTF-8">
+    <link rel="icon" href="missile.ico">
     <style>
-        body { 
-            font-family: Arial, sans-serif; 
-            margin: 40px;
-            background-color: #f5f5f5;
+        @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+        body {
+            font-family: 'Share Tech Mono', 'Consolas', 'Courier New', monospace;
+            background: #f6f6f6;
+            color: #222;
+            margin: 0;
+            padding: 0;
         }
-        .download-section { 
-            margin: 20px 0; 
-            padding: 20px; 
-            border: 1px solid #ddd;
-            background-color: white;
+        .newspaper {
+            max-width: 700px;
+            margin: 40px auto;
+            background: #fff;
+            border: 3px solid #222;
+            box-shadow: 0 0 0 8px #e0e0e0;
+            padding: 32px 28px 28px 28px;
             border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
-        .password-form { 
-            margin: 20px 0; 
+        .headline {
+            font-size: 2.8rem;
+            letter-spacing: 0.18em;
+            text-align: center;
+            font-family: 'Share Tech Mono', monospace;
+            border-bottom: 2px dashed #222;
+            padding-bottom: 8px;
+            margin-bottom: 0.5em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 18px;
         }
-        .download-link { 
-            display: none; 
+        .headline img {
+            height: 2.5rem;
+            vertical-align: middle;
+            filter: grayscale(1) contrast(1.2);
+        }
+        .subtitle {
+            text-align: center;
+            font-size: 1.1rem;
+            font-style: italic;
+            color: #444;
+            margin-bottom: 18px;
+        }
+        .section {
+            border: 2px solid #222;
+            border-radius: 6px;
+            margin: 24px 0 18px 0;
+            padding: 18px 18px 12px 18px;
+            background: #fafafa;
+        }
+        .section-title {
+            font-size: 1.3rem;
+            letter-spacing: 0.08em;
+            border-bottom: 1.5px dashed #222;
+            margin-bottom: 10px;
+            padding-bottom: 2px;
+        }
+        .desc {
+            font-size: 1.05rem;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        .info-row {
+            font-size: 1.08rem;
+            margin-bottom: 6px;
+        }
+        .password-form {
+            margin: 18px 0 10px 0;
+            display: flex;
+            gap: 10px;
         }
         input[type="password"] {
-            padding: 8px;
-            margin-right: 10px;
-            border: 1px solid #ddd;
+            flex: 1;
+            padding: 8px 10px;
+            background: #fff;
+            color: #222;
+            border: 2px solid #222;
             border-radius: 4px;
+            font-size: 1rem;
+            font-family: inherit;
+            outline: none;
+            transition: border 0.2s;
+        }
+        input[type="password"]:focus {
+            border: 2px solid #888;
         }
         button {
-            padding: 8px 16px;
-            background-color: #007bff;
-            color: white;
-            border: none;
+            padding: 8px 22px;
+            background: #fff;
+            color: #222;
+            border: 2px solid #222;
             border-radius: 4px;
+            font-family: inherit;
+            font-size: 1rem;
+            font-weight: bold;
             cursor: pointer;
+            transition: background 0.2s, color 0.2s;
         }
         button:hover {
-            background-color: #0056b3;
+            background: #222;
+            color: #fff;
+        }
+        .download-link {
+            display: none;
+            margin-top: 14px;
+            text-align: center;
         }
         .download-link a {
             display: inline-block;
-            padding: 10px 20px;
-            background-color: #28a745;
-            color: white;
+            padding: 10px 30px;
+            background: #fff;
+            color: #222;
+            border: 2px solid #222;
+            border-radius: 6px;
+            font-size: 1.1rem;
+            font-weight: bold;
             text-decoration: none;
-            border-radius: 4px;
+            font-family: inherit;
+            transition: background 0.2s, color 0.2s;
         }
         .download-link a:hover {
-            background-color: #218838;
+            background: #222;
+            color: #fff;
+        }
+        .openchat {
+            text-align: right;
+            margin-top: 18px;
+        }
+        .openchat a {
+            color: #222;
+            font-size: 1rem;
+            text-decoration: underline;
+            font-weight: bold;
+        }
+        .openchat a:hover {
+            color: #888;
+        }
+        .footer {
+            text-align: center;
+            font-size: 0.95rem;
+            color: #888;
+            margin-top: 32px;
+            border-top: 1px dashed #bbb;
+            padding-top: 10px;
         }
     </style>
 </head>
 <body>
-    <h1>SDTS Download</h1>
-    <div class="download-section">
-        <h2>Latest Build</h2>
-        <p>Build Date: <span id="build-date">-</span></p>
-        <p>Build Time: <span id="build-time">-</span></p>
-        <div class="password-form">
-            <input type="password" id="password" placeholder="Enter password">
-            <button onclick="checkPassword()">Submit</button>
+    <div class="newspaper">
+        <div class="headline">
+            <!-- <img src="missile.ico" alt="SDTS Icon"> -->
+            SDTS Download
         </div>
-        <div id="download-link" class="download-link">
-            <a href="#" id="download-button" download>Download SDTS</a>
+        <div class="subtitle">
+            본 프로그램은 
+            <br>
+            교육 및 테스트 목적으로만 사용해야 합니다.<br>
+        </div>
+        <div class="section">
+            <div class="section-title">SDTS란?</div>
+            <div class="desc">
+                SAWS 데이터 전송 시스템(SDTS)은 탄도 미사일 및 항공기 궤적 시뮬레이션을 수행하고,
+                시뮬레이션 데이터를 ICCS 포맷의 UDP 패킷으로 전송하는 PyQt6 기반 데스크탑 애플리케이션입니다. <br>
+                <br>
+                실시간 모니터링, 경보·긴급 메시지 전송, 음성 방송 기능을 통해 훈련 및 테스트 환경에 최적화되어 있습니다.<br>
+                <br>
+                최신 빌드와 업데이트 소식, 사용법 문의 등은 언제든 오픈채팅방에서 문의하세요!
+            </div>
+        </div>
+        <div class="section">
+            <div class="section-title">Latest Build</div>
+            <div class="info-row">Build Date: <span id="build-date">__BUILD_DATE__</span></div>
+            <div class="info-row">Build Time: <span id="build-time">__BUILD_TIME__</span></div>
+            <div class="password-form">
+                <input type="password" id="password" placeholder="Enter password">
+                <button onclick="checkPassword()">Submit</button>
+            </div>
+            <div id="download-link" class="download-link">
+                <a href="__BUILD_FILE__" id="download-button" download>Download SDTS</a>
+            </div>
+        </div>
+        <div class="openchat">
+            언제든 소통: <a href="https://open.kakao.com/o/gWjZ0qBh" target="_blank">카카오톡 오픈채팅방</a>
+        </div>
+        <div class="footer">
+            &copy; 2025 SDTS Project 
         </div>
     </div>
     <script>
         function checkPassword() {
             const password = document.getElementById('password').value;
-            if (password === '{{ secrets.DOWNLOAD_PASSWORD }}') {
+            if (password === '__DOWNLOAD_PASSWORD__') {
                 document.getElementById('download-link').style.display = 'block';
             } else {
                 alert('Invalid password');
