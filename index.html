@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SDTS Download</title>
+    <meta charset="UTF-8">
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            margin: 40px;
+            background-color: #f5f5f5;
+        }
+        .download-section { 
+            margin: 20px 0; 
+            padding: 20px; 
+            border: 1px solid #ddd;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .password-form { 
+            margin: 20px 0; 
+        }
+        .download-link { 
+            display: none; 
+        }
+        input[type="password"] {
+            padding: 8px;
+            margin-right: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        button {
+            padding: 8px 16px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .download-link a {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+        }
+        .download-link a:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+    <h1>SDTS Download</h1>
+    <div class="download-section">
+        <h2>Latest Build</h2>
+        <p>Build Date: <span id="build-date">-</span></p>
+        <p>Build Time: <span id="build-time">-</span></p>
+        <div class="password-form">
+            <input type="password" id="password" placeholder="Enter password">
+            <button onclick="checkPassword()">Submit</button>
+        </div>
+        <div id="download-link" class="download-link">
+            <a href="#" id="download-button" download>Download SDTS</a>
+        </div>
+    </div>
+    <script>
+        function checkPassword() {
+            const password = document.getElementById('password').value;
+            if (password === '{{ secrets.DOWNLOAD_PASSWORD }}') {
+                document.getElementById('download-link').style.display = 'block';
+            } else {
+                alert('Invalid password');
+            }
+        }
+    </script>
+</body>
+</html> 
