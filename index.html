@@ -202,6 +202,27 @@
                 alert('Invalid password');
             }
         }
+        // 우클릭 방지
+        document.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+            return false;
+        });
+
+        // 개발자 도구 방지
+        document.addEventListener('keydown', function(e) {
+            if (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'i' || e.key === 'J' || e.key === 'j')) {
+                e.preventDefault();
+                return false;
+            }
+        });
+
+        // 소스 코드 보기 방지
+        document.addEventListener('keydown', function(e) {
+            if (e.ctrlKey && e.key === 'U') {
+                e.preventDefault();
+                return false;
+            }
+        });
     </script>
 </body>
 </html> 
