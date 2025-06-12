@@ -175,8 +175,8 @@
         </div>
         <div class="section">
             <div class="section-title">Latest Build</div>
-            <div class="info-row">Build Version: <span id="build-version">__BUILD_VERSION__</span></div>
-            <div class="info-row">Build Date: <span id="build-date">__BUILD_DATE__</span></div>
+            <div class="info-row">Build Version: <span id="build-version"></span></div>
+            <div class="info-row">Build Date: <span id="build-date"></span></div>
             <div id="download-link" class="download-link" style="display: block;">
                 <button id="download-button">Download</button>
             </div>
@@ -194,7 +194,7 @@
         </div>
     </div>
     <script>
-        const REAL_PASSWORD = '__DOWNLOAD_PASSWORD__';
+        const REAL_PASSWORD = 'woojingns';
         function checkPassword() {
             const password = document.getElementById('password').value;
             if (password === REAL_PASSWORD) {
