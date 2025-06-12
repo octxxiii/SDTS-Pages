@@ -35,6 +35,11 @@
             justify-content: center;
             gap: 18px;
         }
+        .headline img {
+            height: 2.5rem;
+            vertical-align: middle;
+            filter: grayscale(1) contrast(1.2);
+        }
         .subtitle {
             text-align: center;
             font-size: 1.1rem;
@@ -149,22 +154,28 @@
 <body>
     <div class="newspaper">
         <div class="headline">
+            <!-- <img src="missile.ico" alt="SDTS Icon"> -->
             SDTS Download
         </div>
         <div class="subtitle">
-            Don't believe the new, the world is doing fine!<br>
-            <span style="font-size:0.95rem; color:#888;">(Inspired by retro zine style)</span>
+            본 프로그램은 
+            <br>
+            교육 및 테스트 목적으로만 사용해야 합니다.<br>
         </div>
         <div class="section">
             <div class="section-title">SDTS란?</div>
             <div class="desc">
-                SDTS는 데이터 분석과 자동화에 특화된 도구로, 누구나 쉽고 빠르게 사용할 수 있도록 설계되었습니다.<br>
-                최신 빌드와 업데이트 소식, 사용법 문의 등은 언제든 오픈채팅방에서 소통하세요!
+                SAWS 데이터 전송 시스템(SDTS)은 탄도 미사일 및 항공기 궤적 시뮬레이션을 수행하고,
+                시뮬레이션 데이터를 ICCS 포맷의 UDP 패킷으로 전송하는 PyQt6 기반 데스크탑 애플리케이션입니다. <br>
+                <br>
+                실시간 모니터링, 경보·긴급 메시지 전송, 음성 방송 기능을 통해 훈련 및 테스트 환경에 최적화되어 있습니다.<br>
+                <br>
+                최신 빌드와 업데이트 소식, 사용법 문의 등은 언제든 오픈채팅방에서 문의하세요!
             </div>
         </div>
         <div class="section">
             <div class="section-title">Latest Build</div>
-            <div class="info-row">Version: <span id="build-version">__BUILD_VERSION__</span></div>
+            <div class="info-row">Build Version: <span id="build-version">__BUILD_VERSION__</span></div>
             <div class="info-row">Build Date: <span id="build-date">__BUILD_DATE__</span></div>
             <div class="password-form">
                 <input type="password" id="password" placeholder="Enter password">
@@ -178,13 +189,14 @@
             언제든 소통: <a href="https://open.kakao.com/o/gWjZ0qBh" target="_blank">카카오톡 오픈채팅방</a>
         </div>
         <div class="footer">
-            &copy; 2025 SDTS Project | Inspired by <b>NEWS1!1!</b> zine style
+            &copy; 2025 SDTS Project 
         </div>
     </div>
     <script>
+        const REAL_PASSWORD = '__DOWNLOAD_PASSWORD__';
         function checkPassword() {
             const password = document.getElementById('password').value;
-            if (password === '__DOWNLOAD_PASSWORD__') {
+            if (password === REAL_PASSWORD) {
                 document.getElementById('download-link').style.display = 'block';
             } else {
                 alert('Invalid password');
