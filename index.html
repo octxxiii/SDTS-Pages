@@ -14,26 +14,25 @@
             padding: 0;
         }
         .newspaper {
-            max-width: 700px;
-            margin: 40px auto;
+            max-width: 600px;
+            margin: 32px auto;
             background: #fff;
-            border: 3px solid #222;
-            box-shadow: 0 0 0 8px #e0e0e0;
-            padding: 32px 28px 28px 28px;
-            border-radius: 8px;
+            border: 2px solid #222;
+            box-shadow: 0 0 0 6px #e0e0e0;
+            padding: 24px 20px;
+            border-radius: 6px;
         }
         .headline {
-            font-size: 2.8rem;
-            letter-spacing: 0.18em;
+            font-size: 2.2rem;
+            letter-spacing: 0.14em;
             text-align: center;
-            font-family: 'Share Tech Mono', monospace;
-            border-bottom: 2px dashed #222;
-            padding-bottom: 8px;
-            margin-bottom: 0.5em;
+            border-bottom: 1.5px dashed #222;
+            padding-bottom: 6px;
+            margin-bottom: 0.8em;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 18px;
+            gap: 12px;
         }
         .headline img {
             height: 2.5rem;
@@ -55,20 +54,19 @@
             background: #fafafa;
         }
         .section-title {
-            font-size: 1.3rem;
-            letter-spacing: 0.08em;
-            border-bottom: 1.5px dashed #222;
-            margin-bottom: 10px;
+            font-size: 1.1rem;
+            margin-bottom: 8px;
             padding-bottom: 2px;
         }
+
         .desc {
-            font-size: 1.05rem;
-            margin-bottom: 10px;
+            font-size: 0.97rem;
+            line-height: 1.6;
             color: #333;
         }
+
         .info-row {
-            font-size: 1.08rem;
-            margin-bottom: 6px;
+            font-size: 1rem;
         }
         .password-form {
             margin: 18px 0 10px 0;
@@ -148,6 +146,20 @@
             margin-top: 32px;
             border-top: 1px dashed #bbb;
             padding-top: 10px;
+        }
+        @media (max-width: 480px) {
+            .headline {
+                font-size: 1.6rem;
+            }
+            .section-title {
+                font-size: 1rem;
+            }
+            .desc, .info-row {
+                font-size: 0.9rem;
+            }
+            .newspaper {
+                padding: 16px 12px;
+            }
         }
     </style>
 </head>
