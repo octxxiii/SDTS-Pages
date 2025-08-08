@@ -1,233 +1,645 @@
 <!DOCTYPE html>
-<html>
+<html lang="ko">
 <head>
-    <title>SDTS Download</title>
-    <meta charset="UTF-8">
-    <link rel="icon" href="missile.ico">
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
-        body {
-            font-family: 'Share Tech Mono', 'Consolas', 'Courier New', monospace;
-            background: #f6f6f6;
-            color: #222;
-            margin: 0;
-            padding: 0;
-        }
-        .newspaper {
-            max-width: 700px;
-            margin: 40px auto;
-            background: #fff;
-            border: 3px solid #222;
-            box-shadow: 0 0 0 8px #e0e0e0;
-            padding: 32px 28px 28px 28px;
-            border-radius: 8px;
-        }
-        .headline {
-            font-size: 2.8rem;
-            letter-spacing: 0.18em;
-            text-align: center;
-            font-family: 'Share Tech Mono', monospace;
-            border-bottom: 2px dashed #222;
-            padding-bottom: 8px;
-            margin-bottom: 0.5em;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 18px;
-        }
-        .headline img {
-            height: 2.5rem;
-            vertical-align: middle;
-            filter: grayscale(1) contrast(1.2);
-        }
-        .subtitle {
-            text-align: center;
-            font-size: 1.1rem;
-            font-style: italic;
-            color: #444;
-            margin-bottom: 18px;
-        }
-        .section {
-            border: 2px solid #222;
-            border-radius: 6px;
-            margin: 24px 0 18px 0;
-            padding: 18px 18px 12px 18px;
-            background: #fafafa;
-        }
-        .section-title {
-            font-size: 1.3rem;
-            letter-spacing: 0.08em;
-            border-bottom: 1.5px dashed #222;
-            margin-bottom: 10px;
-            padding-bottom: 2px;
-        }
-        .desc {
-            font-size: 1.05rem;
-            margin-bottom: 10px;
-            color: #333;
-        }
-        .info-row {
-            font-size: 1.08rem;
-            margin-bottom: 6px;
-        }
-        .password-form {
-            margin: 18px 0 10px 0;
-            display: flex;
-            gap: 10px;
-        }
-        input[type="password"] {
-            flex: 1;
-            padding: 8px 10px;
-            background: #fff;
-            color: #222;
-            border: 2px solid #222;
-            border-radius: 4px;
-            font-size: 1rem;
-            font-family: inherit;
-            outline: none;
-            transition: border 0.2s;
-        }
-        input[type="password"]:focus {
-            border: 2px solid #888;
-        }
-        button {
-            padding: 8px 22px;
-            background: #fff;
-            color: #222;
-            border: 2px solid #222;
-            border-radius: 4px;
-            font-family: inherit;
-            font-size: 1rem;
-            font-weight: bold;
-            cursor: pointer;
-            transition: background 0.2s, color 0.2s;
-        }
-        button:hover {
-            background: #222;
-            color: #fff;
-        }
-        .download-link {
-            display: none;
-            margin-top: 14px;
-            text-align: center;
-        }
-        .download-link a {
-            display: inline-block;
-            padding: 10px 30px;
-            background: #fff;
-            color: #222;
-            border: 2px solid #222;
-            border-radius: 6px;
-            font-size: 1.1rem;
-            font-weight: bold;
-            text-decoration: none;
-            font-family: inherit;
-            transition: background 0.2s, color 0.2s;
-        }
-        .download-link a:hover {
-            background: #222;
-            color: #fff;
-        }
-        .openchat {
-            text-align: right;
-            margin-top: 18px;
-        }
-        .openchat a {
-            color: #222;
-            font-size: 1rem;
-            text-decoration: underline;
-            font-weight: bold;
-        }
-        .openchat a:hover {
-            color: #888;
-        }
-        .footer {
-            text-align: center;
-            font-size: 0.95rem;
-            color: #888;
-            margin-top: 32px;
-            border-top: 1px dashed #bbb;
-            padding-top: 10px;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SDTS — SAWS Data Transfer System</title>
+  <link rel="icon" href="missile.ico" />
+  <meta name="color-scheme" content="light dark" />
+  <style>
+    /* ---- Tesla-inspired minimal reset ---- */
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body { 
+      margin: 0; 
+      font: 15px/1.6 ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", "Apple SD Gothic Neo", Roboto, Inter, "Noto Sans KR", "Helvetica Neue", Arial, system-ui, "Apple Color Emoji", "Segoe UI Emoji"; 
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* ---- Tesla Design System Tokens ---- */
+    :root {
+      /* Tesla-inspired color palette */
+      --bg: #ffffff;
+      --fg: #171a20;
+      --muted: #5c5e62;
+      --card: #f4f4f4;
+      --line: #d0d1d2;
+      --accent: #3e6ae1;
+      --accent-weak: #5c5e62;
+      --ring: #3e6ae133;
+      --shadow: 0 2px 8px rgba(0,0,0,.08);
+      --shadow-hover: 0 8px 25px rgba(0,0,0,.12);
+      --radius: 12px;
+      --space: clamp(20px, 3vw, 32px);
+      --maxw: 1200px;
+      
+      /* Tesla typography */
+      --font-display: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", "Apple SD Gothic Neo", Roboto, Inter, "Noto Sans KR", "Helvetica Neue", Arial, system-ui;
+      --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+    }
+    
+    @media (prefers-color-scheme: dark) {
+      :root { 
+        --bg: #171a20; 
+        --fg: #ffffff; 
+        --muted: #8e8e93; 
+        --card: #1e2124; 
+        --line: #2e3134; 
+        --accent: #3e6ae1; 
+        --accent-weak: #8e8e93; 
+        --ring: #3e6ae133; 
+        --shadow: 0 2px 8px rgba(0,0,0,.3);
+        --shadow-hover: 0 8px 25px rgba(0,0,0,.4);
+      }
+    }
+
+    body { 
+      background: var(--bg); 
+      color: var(--fg); 
+      font-family: var(--font-display);
+    }
+
+    .wrap { 
+      max-width: var(--maxw); 
+      margin: 0 auto; 
+      padding: calc(var(--space)*1.5) var(--space) var(--space); 
+    }
+
+    /* ---- Tesla-style Topbar ---- */
+    .topbar { 
+      display: flex; 
+      align-items: center; 
+      justify-content: space-between; 
+      gap: 16px; 
+      margin-bottom: calc(var(--space)*1.5); 
+      padding: 16px 0;
+    }
+    
+    .brand { 
+      display: flex; 
+      align-items: center; 
+      gap: 12px; 
+      font-weight: 600; 
+      font-size: 1.1rem;
+      letter-spacing: -0.02em;
+    }
+    
+    .logo { 
+      width: 28px; 
+      height: 28px; 
+      border: 2px solid var(--accent); 
+      border-radius: 8px; 
+      display: grid; 
+      place-items: center; 
+      font-size: 14px;
+      background: var(--accent);
+      color: white;
+    }
+    
+    .logo::after { 
+      content: "⚡"; 
+      transform: translateY(-1px); 
+    }
+
+    .mode { 
+      display: flex; 
+      align-items: center; 
+      gap: 16px; 
+    }
+    
+    .toggle { 
+      --w: 48px; 
+      position: relative; 
+      width: var(--w); 
+      height: 28px; 
+      border-radius: 99px; 
+      background: var(--line); 
+      cursor: pointer; 
+      transition: all .3s cubic-bezier(0.4, 0, 0.2, 1); 
+      border: 1px solid var(--line); 
+    }
+    
+    .toggle i { 
+      position: absolute; 
+      top: 2px; 
+      left: 2px; 
+      width: 24px; 
+      height: 24px; 
+      border-radius: 50%; 
+      background: var(--fg); 
+      transition: transform .3s cubic-bezier(0.4, 0, 0.2, 1); 
+      box-shadow: 0 2px 4px rgba(0,0,0,.1);
+    }
+    
+    .toggle[data-on="1"] { 
+      background: var(--accent); 
+      border-color: var(--accent);
+    }
+    
+    .toggle[data-on="1"] i { 
+      transform: translateX(calc(var(--w) - 26px)); 
+      background: white;
+    }
+
+    /* ---- Tesla Hero Section ---- */
+    .hero { 
+      border: 1px solid var(--line); 
+      border-radius: var(--radius); 
+      background: linear-gradient(135deg, color-mix(in srgb, var(--card) 95%, transparent), color-mix(in srgb, var(--bg) 98%, transparent) 100%); 
+      padding: clamp(40px, 6vw, 80px); 
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(45deg, transparent 30%, rgba(62, 106, 225, 0.03) 50%, transparent 70%);
+      pointer-events: none;
+    }
+    
+    .hero > * {
+      position: relative;
+      z-index: 1;
+    }
+    
+    .kicker { 
+      color: var(--accent); 
+      font-size: 0.9rem; 
+      font-weight: 600;
+      letter-spacing: 0.1em; 
+      text-transform: uppercase; 
+      margin-bottom: 8px;
+    }
+    
+    h1 { 
+      font-size: clamp(32px, 6vw, 56px); 
+      font-weight: 700;
+      letter-spacing: -0.02em; 
+      margin: 0 0 20px; 
+      line-height: 1.1; 
+    }
+    
+    .lede { 
+      color: var(--muted); 
+      font-size: clamp(16px, 2.5vw, 20px); 
+      max-width: 75ch; 
+      line-height: 1.6;
+      margin-bottom: 32px;
+    }
+
+    .meta { 
+      display: flex; 
+      flex-wrap: wrap; 
+      gap: 12px 16px; 
+      margin-bottom: 40px; 
+    }
+    
+    .pill { 
+      border: 1px solid var(--line); 
+      background: color-mix(in srgb, var(--card) 80%, transparent); 
+      padding: 8px 16px; 
+      border-radius: 999px; 
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--muted);
+    }
+
+    /* ---- Tesla-style Action Buttons ---- */
+    .actions { 
+      display: grid; 
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
+      gap: 16px; 
+    }
+
+    .btn-os { 
+      position: relative; 
+      display: flex; 
+      align-items: center; 
+      justify-content: center; 
+      gap: 12px; 
+      padding: 20px 24px; 
+      border-radius: var(--radius); 
+      border: 1px solid var(--line); 
+      background: var(--bg); 
+      color: var(--fg); 
+      font-weight: 600; 
+      font-size: 1rem;
+      letter-spacing: -0.01em; 
+      cursor: pointer; 
+      box-shadow: var(--shadow); 
+      transition: all .3s cubic-bezier(0.4, 0, 0.2, 1); 
+      text-decoration: none;
+    }
+    
+    .btn-os:hover { 
+      transform: translateY(-2px); 
+      box-shadow: var(--shadow-hover); 
+      border-color: var(--accent);
+    }
+    
+    .btn-os:focus-visible { 
+      outline: 3px solid var(--ring); 
+      outline-offset: 2px; 
+    }
+    
+    .btn-os small { 
+      font-weight: 500; 
+      color: var(--muted); 
+      font-size: 0.85rem;
+    }
+    
+    .btn-os .os-icon {
+      font-size: 1.2rem;
+    }
+
+    /* ---- Tesla-style Section Cards ---- */
+    .section { 
+      margin-top: calc(var(--space)*1.5); 
+      display: grid; 
+      gap: 24px; 
+    }
+    
+    .card { 
+      border: 1px solid var(--line); 
+      border-radius: var(--radius); 
+      background: var(--card); 
+      padding: clamp(24px, 3vw, 32px); 
+      box-shadow: var(--shadow);
+      transition: all .3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .card:hover {
+      box-shadow: var(--shadow-hover);
+      transform: translateY(-1px);
+    }
+    
+    .section h2 { 
+      font-size: 1.2rem; 
+      font-weight: 600;
+      letter-spacing: -0.01em; 
+      margin: 0 0 16px; 
+      color: var(--fg); 
+    }
+
+    .grid.two { 
+      display: grid; 
+      grid-template-columns: 1.2fr .8fr; 
+      gap: 24px; 
+    }
+    
+    @media (max-width: 920px){ 
+      .grid.two { 
+        grid-template-columns: 1fr; 
+      } 
+    }
+
+    .features { 
+      display: grid; 
+      gap: 16px; 
+    }
+    
+    .feature { 
+      display: flex; 
+      gap: 16px; 
+      align-items: flex-start; 
+    }
+    
+    .feature i { 
+      width: 32px; 
+      height: 32px; 
+      border: 1px solid var(--line); 
+      border-radius: 8px; 
+      display: grid; 
+      place-items: center; 
+      font-size: 16px;
+      background: var(--bg);
+      flex-shrink: 0;
+    }
+
+    /* ---- Tesla-style Footer ---- */
+    .footer { 
+      display: flex; 
+      align-items: center; 
+      justify-content: space-between; 
+      gap: 16px; 
+      margin: calc(var(--space)*1.5) 0 var(--space); 
+      color: var(--muted); 
+      border-top: 1px solid var(--line); 
+      padding-top: var(--space); 
+      font-size: 0.9rem; 
+    }
+    
+    .footer a { 
+      color: inherit; 
+      text-decoration: none;
+      transition: color .2s ease;
+    }
+    
+    .footer a:hover { 
+      color: var(--accent); 
+    }
+
+    /* ---- Tesla-style Dialog ---- */
+    dialog { 
+      border: none; 
+      border-radius: var(--radius); 
+      padding: 0; 
+      background: var(--bg); 
+      color: var(--fg); 
+      box-shadow: var(--shadow-hover); 
+      width: min(600px, 92vw); 
+    }
+    
+    .dlg-head { 
+      display: flex; 
+      align-items: center; 
+      justify-content: space-between; 
+      padding: 20px 24px; 
+      border-bottom: 1px solid var(--line); 
+    }
+    
+    .dlg-body { 
+      padding: 24px; 
+      display: grid; 
+      gap: 20px; 
+    }
+    
+    .close { 
+      border: 1px solid var(--line); 
+      background: var(--bg); 
+      border-radius: 8px; 
+      padding: 8px 16px; 
+      cursor: pointer; 
+      font-weight: 500;
+      transition: all .2s ease;
+    }
+    
+    .close:hover {
+      background: var(--card);
+      border-color: var(--accent);
+    }
+
+    /* ---- Tesla-style Download Links ---- */
+    .dl-link { 
+      display: flex; 
+      align-items: center; 
+      justify-content: space-between; 
+      gap: 16px; 
+      border: 1px solid var(--line); 
+      border-radius: var(--radius); 
+      padding: 16px 20px; 
+      background: var(--card); 
+      transition: all .2s ease;
+    }
+    
+    .dl-link:hover {
+      border-color: var(--accent);
+      box-shadow: var(--shadow);
+    }
+    
+    .dl-link code { 
+      font-family: var(--font-mono); 
+      font-size: 0.9rem; 
+      background: var(--bg);
+      padding: 4px 8px;
+      border-radius: 4px;
+      border: 1px solid var(--line);
+    }
+    
+    .copy { 
+      border: 1px solid var(--line); 
+      background: var(--bg); 
+      padding: 8px 16px; 
+      border-radius: 8px; 
+      cursor: pointer; 
+      font-weight: 500;
+      transition: all .2s ease;
+    }
+    
+    .copy:hover {
+      background: var(--card);
+      border-color: var(--accent);
+    }
+    
+    /* ---- ARM Chip Badge ---- */
+    .chip-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      background: linear-gradient(135deg, #ff6b35, #f7931e);
+      color: white;
+      padding: 2px 8px;
+      border-radius: 12px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+  </style>
 </head>
 <body>
-    <div class="newspaper">
-        <div class="headline">
-            <!-- <img src="missile.ico" alt="SDTS Icon"> -->
-            SDTS Download
+  <div class="wrap">
+    <header class="topbar" aria-label="SDTS top bar">
+      <div class="brand" aria-label="Brand">
+        <div class="logo" aria-hidden="true"></div>
+        <div>SDTS</div>
+      </div>
+      <div class="mode">
+        <span class="kicker" id="version-pill">v—</span>
+        <button class="toggle" id="themeToggle" type="button" aria-label="Toggle dark mode" data-on="0"><i></i></button>
+      </div>
+    </header>
+
+    <main class="hero" aria-labelledby="hero-title">
+      <div class="kicker">SAWS Data Transfer System</div>
+      <h1 id="hero-title">정확하고 빠른<br/>시뮬레이션 데이터 전송</h1>
+      <p class="lede">SDTS는 탄도·항공 궤적을 시뮬레이션하고 ICCS 포맷으로 UDP 패킷을 송출하는 데스크탑 앱입니다. 훈련과 테스트 환경을 위한 <b>실시간 모니터링</b>, <b>경보/긴급 메시지</b>, <b>음성 방송</b> 등을 지원합니다.</p>
+
+      <div class="meta" role="list">
+        <div class="pill" role="listitem">Build <b id="build-version">v1.2</b></div>
+        <div class="pill" role="listitem">Date <time id="build-date" datetime="2025-01-08">2025-01-08</time></div>
+        <div class="pill" role="listitem">Size 35.1&nbsp;MB</div>
+        <div class="pill" role="listitem">용도: 교육 및 테스트</div>
+      </div>
+
+      <div class="actions" aria-label="Downloads">
+        <button class="btn-os" data-os="windows" type="button" aria-haspopup="dialog" aria-controls="dlg">
+          <span class="os-icon">🪟</span>
+          <div>
+            <div>Windows</div>
+            <small>x64</small>
+          </div>
+        </button>
+        <button class="btn-os" data-os="macos-intel" type="button" aria-haspopup="dialog" aria-controls="dlg">
+          <span class="os-icon">🍎</span>
+          <div>
+            <div>macOS</div>
+            <small>Intel</small>
+          </div>
+        </button>
+        <button class="btn-os" data-os="macos-arm" type="button" aria-haspopup="dialog" aria-controls="dlg">
+          <span class="os-icon">🍎</span>
+          <div>
+            <div>macOS</div>
+            <small><span class="chip-badge">M1/M2/M3</span></small>
+          </div>
+        </button>
+        <button class="btn-os" data-os="linux" type="button" aria-haspopup="dialog" aria-controls="dlg">
+          <span class="os-icon">🐧</span>
+          <div>
+            <div>Linux</div>
+            <small>x64</small>
+          </div>
+        </button>
+      </div>
+    </main>
+
+    <section class="section grid two" aria-label="About SDTS">
+      <div class="card">
+        <h2>개요</h2>
+        <div class="features">
+          <div class="feature"><i>📡</i><div><b>ICCS 규격 UDP</b><br/>시뮬레이션 결과를 네트워크로 안정적으로 송출.</div></div>
+          <div class="feature"><i>⏱️</i><div><b>실시간 모니터링</b><br/>상태판, 이벤트 로그, 지연 최소화.</div></div>
+          <div class="feature"><i>🔊</i><div><b>경보·음성 방송</b><br/>알림/긴급 상황 브로드캐스트.</div></div>
+          <div class="feature"><i>🧩</i><div><b>PyQt6 기반</b><br/>현대적 UI, 플러그인 지향 설계.</div></div>
         </div>
-        <div class="subtitle">
-            본 프로그램은 
-            <br>
-            교육 및 테스트 목적으로만 사용해야 합니다.<br>
-        </div>
-        <div class="section">
-            <div class="section-title">SDTS란?</div>
-            <div class="desc">
-                SAWS 데이터 전송 시스템(SDTS)은 탄도 미사일 및 항공기 궤적 시뮬레이션을 수행하고,
-                시뮬레이션 데이터를 ICCS 포맷의 UDP 패킷으로 전송하는 PyQt6 기반 데스크탑 애플리케이션입니다. <br>
-                <br>
-                실시간 모니터링, 경보·긴급 메시지 전송, 음성 방송 기능을 통해 훈련 및 테스트 환경에 최적화되어 있습니다.<br>
-                <br>
-                최신 빌드와 업데이트 소식, 사용법 문의 등은 언제든 오픈채팅방에서 문의하세요!
-            </div>
-        </div>
-        <div class="section">
-            <div class="section-title">Latest Build</div>
-            <div class="info-row">Build Version: <span id="build-version"></span></div>
-            <div class="info-row">Build Date: <span id="build-date"></span></div>
-            <div id="download-link" class="download-link" style="display: block;">
-                <button id="download-button">Download</button>
-            </div>
-            <script>
-                document.getElementById('download-button').onclick = function() {
-                    window.location.href = "../SAWS Data Transfer System v1.2.exe";
-                };
-            </script>
-        </div>
-        <div class="openchat">
-            언제든 소통: <a href="https://open.kakao.com/o/gWjZ0qBh" target="_blank">카카오톡 오픈채팅방</a>
-        </div>
-        <div class="footer">
-            &copy; 2025 SDTS Project 
-        </div>
+      </div>
+      <div class="card">
+        <h2>지원 & 소통</h2>
+        <p>최신 빌드, 사용법, 장애 대응은 아래 채널에서 빠르게 응대합니다.</p>
+        <p><a href="https://open.kakao.com/o/gWjZ0qBh" target="_blank" rel="noopener">카카오톡 오픈채팅방 열기 →</a></p>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div>© 2025 SDTS Project</div>
+      <div>교육·테스트 용도 전용</div>
+    </footer>
+  </div>
+
+  <!-- Download dialog (single, content changes per-OS) -->
+  <dialog id="dlg" aria-modal="true" aria-labelledby="dlg-title">
+    <div class="dlg-head">
+      <strong id="dlg-title">Download</strong>
+      <button class="close" id="dlgClose" type="button" aria-label="Close">닫기</button>
     </div>
-    <script>
-        // 버전 정보 설정
-        document.getElementById('build-version').textContent = 'v1.2';
-        document.getElementById('build-date').textContent = '2025-08-07';
-        
-        const REAL_PASSWORD = 'woojingns';
-        function checkPassword() {
-            const password = document.getElementById('password').value;
-            if (password === REAL_PASSWORD) {
-                document.getElementById('download-link').style.display = 'block';
-            } else {
-                alert('Invalid password');
-            }
+    <div class="dlg-body">
+      <div class="dl-link">
+        <div>
+          <div style="font-weight:600; letter-spacing:-0.01em" id="dl-label">—</div>
+          <div style="color:var(--muted); font-size:0.9rem">직접 다운로드 링크</div>
+        </div>
+        <a id="dl-href" class="close" href="#" download>다운로드</a>
+      </div>
+      <div class="dl-link">
+        <div style="display:grid; gap:6px">
+          <div style="font-weight:600; letter-spacing:-0.01em">직접 링크 복사</div>
+          <code id="dl-code">—</code>
+        </div>
+        <button class="copy" id="copyBtn" type="button">복사</button>
+      </div>
+      <p style="color:var(--muted); margin: 8px 2px 0; font-size:0.9rem">문제 발생 시 우회 브라우저/관리자 권한 실행을 시도하세요.</p>
+    </div>
+  </dialog>
+
+  <script>
+    // --- Build metadata (can be wired to CI to replace at build time) ---
+    const BUILD = { version: 'v1.2', date: '2025-01-08', size: '35.1 MB' };
+    document.getElementById('build-version').textContent = BUILD.version;
+    document.getElementById('build-date').textContent = BUILD.date;
+    document.getElementById('version-pill').textContent = BUILD.version;
+
+    // --- Theme toggle (persist to localStorage) ---
+    const toggle = document.getElementById('themeToggle');
+    const applyTheme = (v)=>{
+      document.documentElement.style.colorScheme = v ? 'dark' : 'light';
+      toggle.dataset.on = v ? '1' : '0';
+      localStorage.setItem('sdts-theme', v ? 'dark' : 'light');
+    };
+    const saved = localStorage.getItem('sdts-theme');
+    if(saved) applyTheme(saved === 'dark');
+    toggle.addEventListener('click', ()=> applyTheme(toggle.dataset.on !== '1'));
+
+    // --- Download dialog logic ---
+    const dialog = document.getElementById('dlg');
+    const dlgClose = document.getElementById('dlgClose');
+    const btns = document.querySelectorAll('.btn-os');
+    const dlLabel = document.getElementById('dl-label');
+    const dlHref = document.getElementById('dl-href');
+    const dlCode = document.getElementById('dl-code');
+    const copyBtn = document.getElementById('copyBtn');
+
+    const URLS = {
+      'windows': '../SAWS-DataTransfer-v1.2-windows-x64.exe',
+      'macos-intel': '../SAWS-DataTransfer-v1.2-macos-x64.pkg',
+      'macos-arm': '../SAWS-DataTransfer-v1.2-macos-arm64.pkg',
+      'linux': '../SAWS-DataTransfer-v1.2-linux-x64.AppImage'
+    };
+
+    const OS_LABELS = {
+      'windows': 'WINDOWS • x64',
+      'macos-intel': 'macOS • Intel',
+      'macos-arm': 'macOS • Apple Silicon',
+      'linux': 'LINUX • x64'
+    };
+
+    btns.forEach(b=> b.addEventListener('click', ()=> {
+      const os = b.dataset.os;
+      const href = URLS[os];
+      const label = OS_LABELS[os];
+      
+      dlHref.href = href;
+      dlLabel.textContent = label + ' • ' + BUILD.version + ' • ' + BUILD.size;
+      dlCode.textContent = location.origin + (href.startsWith('..') ? href.replace('..','') : href);
+      
+      if(typeof dialog.showModal === 'function') dialog.showModal();
+      else alert('다운로드 링크: ' + href);
+    }));
+
+    dlgClose.addEventListener('click', ()=> dialog.close());
+
+    copyBtn.addEventListener('click', async ()=>{
+      try {
+        await navigator.clipboard.writeText(dlCode.textContent);
+        copyBtn.textContent = '복사됨';
+        setTimeout(()=> copyBtn.textContent = '복사', 1200);
+      } catch(e) {
+        alert('클립보드 복사 실패: ' + e.message);
+      }
+    });
+
+    // --- A11y: ESC to close dialog ---
+    dialog.addEventListener('keydown', (e)=>{ if(e.key === 'Escape') dialog.close(); });
+
+    // --- Tesla-style smooth animations ---
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
         }
-        // 우클릭 방지
-        document.addEventListener('contextmenu', function(e) {
-            e.preventDefault();
-            return false;
-        });
+      });
+    }, observerOptions);
 
-        // 개발자 도구 방지
-        document.addEventListener('keydown', function(e) {
-            if (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'i' || e.key === 'J' || e.key === 'j')) {
-                e.preventDefault();
-                return false;
-            }
-        });
-
-        // 소스 코드 보기 방지
-        document.addEventListener('keydown', function(e) {
-            if (e.ctrlKey && e.key === 'U') {
-                e.preventDefault();
-                return false;
-            }
-        });
-    </script>
+    // Observe cards for smooth entrance
+    document.querySelectorAll('.card').forEach(card => {
+      card.style.opacity = '0';
+      card.style.transform = 'translateY(20px)';
+      card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+      observer.observe(card);
+    });
+  </script>
 </body>
-</html> 
+</html>
