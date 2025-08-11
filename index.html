@@ -1022,9 +1022,13 @@
       const archLabel = ARCH_LABELS[currentArch];
       const archDesc = ARCH_DESCRIPTIONS[currentOS][currentArch];
       
-      dlHref.href = url;
+      // 절대 URL 생성 (GitHub Pages 도메인 사용)
+      const baseUrl = 'https://octxxiii.github.io/SDTS-Pages';
+      const fullUrl = `${baseUrl}/${url}`;
+      
+      dlHref.href = fullUrl;
       dlLabel.textContent = `${osLabel} • ${archLabel} • ${archDesc} • ${BUILD.version} • ${BUILD.size}`;
-      dlCode.textContent = location.origin + (url.startsWith('..') ? url.replace('..','') : url);
+      dlCode.textContent = fullUrl;
     }
 
     dlgClose.addEventListener('click', () => dialog.close());
