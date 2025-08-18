@@ -17,9 +17,7 @@
       -moz-osx-font-smoothing: grayscale;
     }
 
-    /* ---- Apple + Tesla Glassmorphism Design System ---- */
     :root {
-      /* Apple-inspired color palette */
       --bg: #ffffff;
       --fg: #1d1d1f;
       --muted: #86868b;
@@ -65,19 +63,22 @@
       }
     }
 
-    body { 
-      background: 
-        radial-gradient(ellipse 80% 200% at 20% 20%, rgba(120, 119, 198, 0.3) 0%, transparent 70%),
-        radial-gradient(ellipse 80% 200% at 80% 80%, rgba(255, 119, 198, 0.3) 0%, transparent 70%),
-        radial-gradient(ellipse 60% 150% at 40% 50%, rgba(120, 219, 255, 0.3) 0%, transparent 70%),
-        linear-gradient(180deg, var(--bg) 0%, color-mix(in srgb, var(--bg) 95%, var(--accent) 5%) 50%, var(--bg) 100%);
-      color: var(--fg); 
-      font-family: var(--font-display);
-      min-height: 100vh;
-      position: relative;
-      scroll-behavior: smooth;
-      overflow-x: hidden;
-    }
+         body { 
+       background: 
+         radial-gradient(ellipse 80% 200% at 20% 20%, rgba(120, 119, 198, 0.3) 0%, transparent 70%),
+         radial-gradient(ellipse 80% 200% at 80% 80%, rgba(255, 119, 198, 0.3) 0%, transparent 70%),
+         radial-gradient(ellipse 60% 150% at 40% 50%, rgba(120, 219, 255, 0.3) 0%, transparent 70%),
+         linear-gradient(180deg, var(--bg) 0%, color-mix(in srgb, var(--bg) 95%, var(--accent) 5%) 50%, var(--bg) 100%);
+       background-size: 200% 100%;
+       background-attachment: fixed;
+       background-position: center;
+       color: var(--fg); 
+       font-family: var(--font-display);
+       min-height: 100vh;
+       position: relative;
+       scroll-behavior: smooth;
+       overflow-x: hidden;
+     }
     
     /* Natural layout without forced scrolling */
     .wrap {
@@ -783,8 +784,8 @@
       <p class="lede">SAWS 시뮬레이션 데이터 전송 시스템은 탄도·항공 궤적을 시뮬레이션하고 ICCS 포맷으로 UDP 패킷을 송출하여 SAWS에 전달하는 PyQt6 기반 데스크탑 앱입니다. <b>KAMD 탄도탄 시뮬레이션</b>, <b>MCRC 항적 시뮬레이션</b>, <b>신호세기 TCP 서버</b>, <b>훈련상황 방공경보</b> 등의 데이터 전송을 통해 훈련과 테스트 환경에 최적화되어 있습니다.</p>
 
       <div class="meta" role="list">
-        <div class="pill" role="listitem">Build <b id="build-version">v1.2</b></div>
-        <div class="pill" role="listitem">Date <time id="build-date" datetime="2025-08-11">2025-08-11</time></div>
+        <div class="pill" role="listitem">Build <b id="build-version">v1.3</b></div>
+        <div class="pill" role="listitem">Date <time id="build-date" datetime="2025-08-18">2025-08-18</time></div>
         <div class="pill" role="listitem">Size 35&nbsp;MB</div>
         <div class="pill" role="listitem">용도: 교육 및 테스트</div>
       </div>
@@ -813,6 +814,66 @@
             <small>x64 + ARM64</small>
           </div>
         </button>
+      </div>
+      
+      <!-- 이전 버전 다운로드 섹션 -->
+      <div class="legacy-downloads" style="margin-top: 32px;">
+        <div style="text-align: center; margin-bottom: 20px;">
+          <div style="color: var(--muted); font-size: 0.9rem; margin-bottom: 8px;">이전 버전이 필요하신가요?</div>
+          <button class="legacy-toggle" id="legacyToggle" type="button" style="background: none; border: 1px solid var(--glass-border); color: var(--muted); padding: 8px 16px; border-radius: 8px; cursor: pointer; font-size: 0.9rem; transition: all 0.3s ease;">
+            <span id="legacyToggleText">이전 버전 보기</span>
+            <span id="legacyToggleIcon">▼</span>
+          </button>
+        </div>
+        
+        <div class="legacy-versions" id="legacyVersions" style="display: none; opacity: 0; transform: translateY(-10px); transition: all 0.3s ease;">
+          <div style="display: grid; gap: 16px; max-width: 600px; margin: 0 auto;">
+            <!-- v1.2 -->
+            <div class="legacy-version-card" style="border: 1px solid var(--glass-border); border-radius: 12px; padding: 20px; background: var(--glass-bg); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+                <div>
+                  <div style="font-weight: 600; color: var(--fg);">v1.2 (2025-07-15)</div>
+                  <div style="color: var(--muted); font-size: 0.9rem;">안정적인 이전 버전</div>
+                </div>
+                <div style="display: flex; gap: 8px;">
+                  <button class="legacy-dl-btn" data-version="v1.2" data-os="windows" style="background: var(--accent); color: white; border: none; padding: 8px 16px; border-radius: 6px; cursor: pointer; font-size: 0.85rem; transition: all 0.3s ease;">Windows</button>
+                  <button class="legacy-dl-btn" data-version="v1.2" data-os="macos" style="background: var(--accent); color: white; border: none; padding: 8px 16px; border-radius: 6px; cursor: pointer; font-size: 0.85rem; transition: all 0.3s ease;">macOS</button>
+                  <button class="legacy-dl-btn" data-version="v1.2" data-os="linux" style="background: var(--accent); color: white; border: none; padding: 8px 16px; border-radius: 6px; cursor: pointer; font-size: 0.85rem; transition: all 0.3s ease;">Linux</button>
+                </div>
+              </div>
+            </div>
+            
+                         <!-- v1.1 -->
+             <div class="legacy-version-card" style="border: 1px solid var(--glass-border); border-radius: 12px; padding: 20px; background: var(--glass-bg); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);">
+               <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+                 <div>
+                   <div style="font-weight: 600; color: var(--fg);">v1.1 (2025-06-20)</div>
+                   <div style="color: var(--muted); font-size: 0.9rem;">기본 기능 포함</div>
+                 </div>
+                 <div style="display: flex; gap: 8px;">
+                   <button class="legacy-dl-btn disabled" data-version="v1.1" data-os="windows" style="background: var(--muted); color: rgba(255, 255, 255, 0.6); border: none; padding: 8px 16px; border-radius: 6px; cursor: not-allowed; font-size: 0.85rem; transition: all 0.3s ease; opacity: 0.5;" disabled>Windows</button>
+                   <button class="legacy-dl-btn disabled" data-version="v1.1" data-os="macos" style="background: var(--muted); color: rgba(255, 255, 255, 0.6); border: none; padding: 8px 16px; border-radius: 6px; cursor: not-allowed; font-size: 0.85rem; transition: all 0.3s ease; opacity: 0.5;" disabled>macOS</button>
+                   <button class="legacy-dl-btn disabled" data-version="v1.1" data-os="linux" style="background: var(--muted); color: rgba(255, 255, 255, 0.6); border: none; padding: 8px 16px; border-radius: 6px; cursor: not-allowed; font-size: 0.85rem; transition: all 0.3s ease; opacity: 0.5;" disabled>Linux</button>
+                 </div>
+               </div>
+             </div>
+            
+                         <!-- v1.0 -->
+             <div class="legacy-version-card" style="border: 1px solid var(--glass-border); border-radius: 12px; padding: 20px; background: var(--glass-bg); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);">
+               <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+                 <div>
+                   <div style="font-weight: 600; color: var(--fg);">v1.0 (2025-05-10)</div>
+                   <div style="color: var(--muted); font-size: 0.9rem;">최초 릴리즈</div>
+                 </div>
+                 <div style="display: flex; gap: 8px;">
+                   <button class="legacy-dl-btn disabled" data-version="v1.0" data-os="windows" style="background: var(--muted); color: rgba(255, 255, 255, 0.6); border: none; padding: 8px 16px; border-radius: 6px; cursor: not-allowed; font-size: 0.85rem; transition: all 0.3s ease; opacity: 0.5;" disabled>Windows</button>
+                   <button class="legacy-dl-btn disabled" data-version="v1.0" data-os="macos" style="background: var(--muted); color: rgba(255, 255, 255, 0.6); border: none; padding: 8px 16px; border-radius: 6px; cursor: not-allowed; font-size: 0.85rem; transition: all 0.3s ease; opacity: 0.5;" disabled>macOS</button>
+                   <button class="legacy-dl-btn disabled" data-version="v1.0" data-os="linux" style="background: var(--muted); color: rgba(255, 255, 255, 0.6); border: none; padding: 8px 16px; border-radius: 6px; cursor: not-allowed; font-size: 0.85rem; transition: all 0.3s ease; opacity: 0.5;" disabled>Linux</button>
+                 </div>
+               </div>
+             </div>
+          </div>
+        </div>
       </div>
       
       <div class="support-links" style="margin-top: 32px; text-align: center;">
@@ -877,7 +938,7 @@
 
   <script>
     // --- Build metadata (can be wired to CI to replace at build time) ---
-    const BUILD = { version: 'v1.2', date: '2025-08-11', size: '40 MB' };
+    const BUILD = { version: 'v1.3', date: '2025-08-18', size: '40 MB' };
     
     // Update build info if elements exist
     const buildVersion = document.getElementById('build-version');
@@ -900,19 +961,65 @@
     let currentOS = null;
     let currentArch = 'x64'; // 기본값
 
-    // OS별 다운로드 URL 매핑
+    // OS별 다운로드 URL 매핑 (최신 버전)
     const DOWNLOAD_URLS = {
       'windows': {
-        'x64': 'pages/windows-x64/SAWS-DataTransfer-v1.2-windows-x64.exe',
-        'arm64': 'pages/windows-arm64/SAWS-DataTransfer-v1.2-windows-arm64.exe'
+        'x64': 'dist/windows/SAWS-DataTransfer-v1.3-windows-x64.exe',
+        'arm64': 'dist/windows/SAWS-DataTransfer-v1.3-windows-arm64.exe'
       },
       'macos': {
-        'x64': 'pages/macos-x64/SAWS-DataTransfer-v1.2-macos-x64',
-        'arm64': 'pages/macos-arm64/SAWS-DataTransfer-v1.2-macos-arm64'
+        'x64': 'dist/macos/SAWS-DataTransfer-v1.3-macos-x64',
+        'arm64': 'dist/macos/SAWS-DataTransfer-v1.3-macos-arm64'
       },
       'linux': {
-        'x64': 'pages/linux-x64/SAWS-DataTransfer-v1.2-linux-x64',
-        'arm64': 'pages/linux-arm64/SAWS-DataTransfer-v1.2-linux-arm64'
+        'x64': 'dist/linux/SAWS-DataTransfer-v1.3-linux-x64',
+        'arm64': 'dist/linux/SAWS-DataTransfer-v1.3-linux-arm64'
+      }
+    };
+
+    // 이전 버전 다운로드 URL 매핑
+    const LEGACY_DOWNLOAD_URLS = {
+      'v1.2': {
+        'windows': {
+          'x64': 'dist/windows/SAWS-DataTransfer-v1.2-windows-x64.exe',
+          'arm64': 'dist/windows/SAWS-DataTransfer-v1.2-windows-arm64.exe'
+        },
+        'macos': {
+          'x64': 'dist/macos/SAWS-DataTransfer-v1.2-macos-x64',
+          'arm64': 'dist/macos/SAWS-DataTransfer-v1.2-macos-arm64'
+        },
+        'linux': {
+          'x64': 'dist/linux/SAWS-DataTransfer-v1.2-linux-x64',
+          'arm64': 'dist/linux/SAWS-DataTransfer-v1.2-linux-arm64'
+        }
+      },
+      'v1.1': {
+        'windows': {
+          'x64': 'dist/windows/SAWS-DataTransfer-v1.2-windows-x64.exe', // Placeholder
+          'arm64': 'dist/windows/SAWS-DataTransfer-v1.2-windows-x64.exe' // Placeholder
+        },
+        'macos': {
+          'x64': 'dist/windows/SAWS-DataTransfer-v1.2-windows-x64.exe', // Placeholder
+          'arm64': 'dist/windows/SAWS-DataTransfer-v1.2-windows-x64.exe' // Placeholder
+        },
+        'linux': {
+          'x64': 'dist/windows/SAWS-DataTransfer-v1.2-windows-x64.exe', // Placeholder
+          'arm64': 'dist/windows/SAWS-DataTransfer-v1.2-windows-x64.exe' // Placeholder
+        }
+      },
+      'v1.0': {
+        'windows': {
+          'x64': 'dist/windows/SAWS-DataTransfer-v1.2-windows-x64.exe', // Placeholder
+          'arm64': 'dist/windows/SAWS-DataTransfer-v1.2-windows-x64.exe' // Placeholder
+        },
+        'macos': {
+          'x64': 'dist/windows/SAWS-DataTransfer-v1.2-windows-x64.exe', // Placeholder
+          'arm64': 'dist/windows/SAWS-DataTransfer-v1.2-windows-x64.exe' // Placeholder
+        },
+        'linux': {
+          'x64': 'dist/windows/SAWS-DataTransfer-v1.2-windows-x64.exe', // Placeholder
+          'arm64': 'dist/windows/SAWS-DataTransfer-v1.2-windows-x64.exe' // Placeholder
+        }
       }
     };
 
@@ -1047,6 +1154,101 @@
     dialog.addEventListener('keydown', (e) => { 
       if(e.key === 'Escape') dialog.close(); 
     });
+
+    // --- 이전 버전 다운로드 기능 ---
+    const legacyToggle = document.getElementById('legacyToggle');
+    const legacyVersions = document.getElementById('legacyVersions');
+    const legacyToggleText = document.getElementById('legacyToggleText');
+    const legacyToggleIcon = document.getElementById('legacyToggleIcon');
+    const legacyDlBtns = document.querySelectorAll('.legacy-dl-btn');
+
+    // 이전 버전 토글 버튼 클릭 이벤트
+    legacyToggle.addEventListener('click', () => {
+      const isVisible = legacyVersions.style.display !== 'none';
+      
+      if (isVisible) {
+        // 숨기기
+        legacyVersions.style.display = 'none';
+        legacyVersions.style.opacity = '0';
+        legacyVersions.style.transform = 'translateY(-10px)';
+        legacyToggleText.textContent = '이전 버전 보기';
+        legacyToggleIcon.textContent = '▼';
+        legacyToggle.style.borderColor = 'var(--glass-border)';
+        legacyToggle.style.color = 'var(--muted)';
+      } else {
+        // 보이기
+        legacyVersions.style.display = 'block';
+        setTimeout(() => {
+          legacyVersions.style.opacity = '1';
+          legacyVersions.style.transform = 'translateY(0)';
+        }, 10);
+        legacyToggleText.textContent = '이전 버전 숨기기';
+        legacyToggleIcon.textContent = '▲';
+        legacyToggle.style.borderColor = 'var(--accent)';
+        legacyToggle.style.color = 'var(--accent)';
+      }
+    });
+
+         // 이전 버전 다운로드 버튼 클릭 이벤트
+     legacyDlBtns.forEach(btn => {
+       btn.addEventListener('click', () => {
+         // 비활성화된 버튼은 클릭 무시
+         if (btn.classList.contains('disabled') || btn.disabled) {
+           return;
+         }
+         
+         const version = btn.dataset.version;
+         const os = btn.dataset.os;
+         
+         // 기본적으로 x64 아키텍처 사용 (이전 버전은 주로 x64만 지원)
+         const arch = 'x64';
+         const url = LEGACY_DOWNLOAD_URLS[version][os][arch];
+         
+         // 절대 URL 생성
+         const baseUrl = 'https://octxxiii.github.io/SDTS-Pages';
+         const fullUrl = `${baseUrl}/${url}`;
+         
+         // 다운로드 시작
+         const link = document.createElement('a');
+         link.href = fullUrl;
+         link.download = '';
+         document.body.appendChild(link);
+         link.click();
+         document.body.removeChild(link);
+         
+         // 사용자에게 피드백 제공
+         const originalText = btn.textContent;
+         btn.textContent = '다운로드 중...';
+         btn.style.background = 'var(--muted)';
+         btn.style.cursor = 'not-allowed';
+         
+         setTimeout(() => {
+           btn.textContent = '완료!';
+           btn.style.background = '#34c759';
+           
+           setTimeout(() => {
+             btn.textContent = originalText;
+             btn.style.background = 'var(--accent)';
+             btn.style.cursor = 'pointer';
+           }, 2000);
+         }, 1000);
+       });
+     });
+
+    // 이전 버전 카드 호버 효과
+    document.querySelectorAll('.legacy-version-card').forEach(card => {
+      card.addEventListener('mouseenter', () => {
+        card.style.transform = 'translateY(-2px)';
+        card.style.boxShadow = '0 8px 25px rgba(0, 0, 0, 0.15)';
+        card.style.borderColor = 'var(--accent)';
+      });
+      
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = 'translateY(0)';
+        card.style.boxShadow = 'var(--glass-shadow)';
+        card.style.borderColor = 'var(--glass-border)';
+      });
+    });
     
     // --- Tesla-style smooth animations ---
     const observerOptions = {
@@ -1087,11 +1289,25 @@
         50% { transform: translateY(-10px); }
       }
       
-      .arch-btn:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
-        border-color: var(--accent);
-      }
+          .arch-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+      border-color: var(--accent);
+    }
+    
+    /* 이전 버전 다운로드 버튼 스타일 */
+    .legacy-dl-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 15px rgba(0, 122, 255, 0.3);
+      filter: brightness(1.1);
+    }
+    
+    .legacy-toggle:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 15px rgba(0, 122, 255, 0.2);
+    }
     `;
     document.head.appendChild(style);
   </script>
