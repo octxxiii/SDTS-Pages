@@ -9,7 +9,7 @@
   <style>
     /* ---- Tesla-inspired minimal reset ---- */
     *, *::before, *::after { box-sizing: border-box; }
-    html, body { height: 100%; }
+    html, body { height: 100vh; }
     body { 
       margin: 0; 
       font: 15px/1.6 ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", "Apple SD Gothic Neo", Roboto, Inter, "Noto Sans KR", "Helvetica Neue", Arial, system-ui, "Apple Color Emoji", "Segoe UI Emoji"; 
@@ -186,11 +186,6 @@
       }
     }
     
-
-
-
-
-    /* ---- Tesla-style Topbar ---- */
     .topbar { 
       display: flex; 
       align-items: center; 
@@ -819,7 +814,8 @@
       <!-- 이전 버전 다운로드 섹션 -->
       <div class="legacy-downloads" style="margin-top: 32px;">
         <div style="text-align: center; margin-bottom: 20px;">
-          <div style="color: var(--muted); font-size: 0.9rem; margin-bottom: 8px;">이전 버전이 필요하신가요?</div>
+          <!-- <div style="color: var(--muted); font-size: 0.9rem; margin-bottom: 8px;">이전 버전이 필요하신가요?</div> -->
+          <!-- <div style="color: var(--muted); font-size: 0.8rem; margin-bottom: 16px; opacity: 0.8;">호환성 문제나 특정 기능이 필요한 경우 이전 버전을 사용할 수 있습니다</div> -->
           <button class="legacy-toggle" id="legacyToggle" type="button" style="background: none; border: 1px solid var(--glass-border); color: var(--muted); padding: 8px 16px; border-radius: 8px; cursor: pointer; font-size: 0.9rem; transition: all 0.3s ease;">
             <span id="legacyToggleText">이전 버전 보기</span>
             <span id="legacyToggleIcon">▼</span>
@@ -834,44 +830,130 @@
                 <div>
                   <div style="font-weight: 600; color: var(--fg);">v1.2 (2025-07-15)</div>
                   <div style="color: var(--muted); font-size: 0.9rem;">안정적인 이전 버전</div>
+                  <div style="color: var(--accent); font-size: 0.8rem; margin-top: 4px;">✅ Windows x64/ARM64, macOS Intel/Apple Silicon, Linux x64/ARM64</div>
                 </div>
-                <div style="display: flex; gap: 8px;">
-                  <button class="legacy-dl-btn" data-version="v1.2" data-os="windows" style="background: var(--accent); color: white; border: none; padding: 8px 16px; border-radius: 6px; cursor: pointer; font-size: 0.85rem; transition: all 0.3s ease;">Windows</button>
-                  <button class="legacy-dl-btn" data-version="v1.2" data-os="macos" style="background: var(--accent); color: white; border: none; padding: 8px 16px; border-radius: 6px; cursor: pointer; font-size: 0.85rem; transition: all 0.3s ease;">macOS</button>
-                  <button class="legacy-dl-btn" data-version="v1.2" data-os="linux" style="background: var(--accent); color: white; border: none; padding: 8px 16px; border-radius: 6px; cursor: pointer; font-size: 0.85rem; transition: all 0.3s ease;">Linux</button>
+                <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                  <button class="legacy-dl-btn" data-version="v1.2" data-os="windows" data-arch="x64" data-file="SAWS-DataTransfer-v1.2-windows-x64.exe" style="background: var(--accent); color: white; border: none; padding: 8px 16px; border-radius: 6px; cursor: pointer; font-size: 0.85rem; transition: all 0.3s ease;">Windows x64</button>
+                  <button class="legacy-dl-btn" data-version="v1.2" data-os="windows" data-arch="arm64" data-file="SAWS-DataTransfer-v1.2-windows-arm64.exe" style="background: var(--accent); color: white; border: none; padding: 8px 16px; border-radius: 6px; cursor: pointer; font-size: 0.85rem; transition: all 0.3s ease;">Windows ARM64</button>
+                  <button class="legacy-dl-btn" data-version="v1.2" data-os="macos" data-arch="x64" data-file="SAWS-DataTransfer-v1.2-macos-x64" style="background: var(--accent); color: white; border: none; padding: 8px 16px; border-radius: 6px; cursor: pointer; font-size: 0.85rem; transition: all 0.3s ease;">macOS Intel</button>
+                  <button class="legacy-dl-btn" data-version="v1.2" data-os="macos" data-arch="arm64" data-file="SAWS-DataTransfer-v1.2-macos-arm64" style="background: var(--accent); color: white; border: none; padding: 8px 16px; border-radius: 6px; cursor: pointer; font-size: 0.85rem; transition: all 0.3s ease;">macOS Apple Silicon</button>
+                  <button class="legacy-dl-btn" data-version="v1.2" data-os="linux" data-arch="x64" data-file="SAWS-DataTransfer-v1.2-linux-x64" style="background: var(--accent); color: white; border: none; padding: 8px 16px; border-radius: 6px; cursor: pointer; font-size: 0.85rem; transition: all 0.3s ease;">Linux x64</button>
+                  <button class="legacy-dl-btn" data-version="v1.2" data-os="linux" data-arch="arm64" data-file="SAWS-DataTransfer-v1.2-linux-arm64" style="background: var(--accent); color: white; border: none; padding: 8px 16px; border-radius: 6px; cursor: pointer; font-size: 0.85rem; transition: all 0.3s ease;">Linux ARM64</button>
                 </div>
               </div>
             </div>
             
-                         <!-- v1.1 -->
+            <!-- v1.1.5 -->
+            <div class="legacy-version-card" style="border: 1px solid var(--glass-border); border-radius: 12px; padding: 20px; background: var(--glass-bg); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+                <div>
+                  <div style="font-weight: 600; color: var(--fg);">v1.1.5 (2025-06-25)</div>
+                  <div style="color: var(--muted); font-size: 0.9rem;">기본 기능 포함</div>
+                  <div style="color: var(--accent); font-size: 0.8rem; margin-top: 4px;">✅ Windows x64</div>
+                </div>
+                <div style="display: flex; gap: 8px;">
+                  <button class="legacy-dl-btn" data-version="v1.1.5" data-os="windows" data-arch="x64" data-file="SAWS-DataTransfer-v1.1.5-windows-x64.exe" style="background: var(--accent); color: white; border: none; padding: 8px 16px; border-radius: 6px; cursor: pointer; font-size: 0.85rem; transition: all 0.3s ease;">Windows x64</button>
+                </div>
+              </div>
+            </div>
+            
+            <!-- v1.1.4 -->
              <div class="legacy-version-card" style="border: 1px solid var(--glass-border); border-radius: 12px; padding: 20px; background: var(--glass-bg); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);">
                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
                  <div>
-                   <div style="font-weight: 600; color: var(--fg);">v1.1 (2025-06-20)</div>
+                  <div style="font-weight: 600; color: var(--fg);">v1.1.4 (2025-06-20)</div>
                    <div style="color: var(--muted); font-size: 0.9rem;">기본 기능 포함</div>
+                  <div style="color: var(--accent); font-size: 0.8rem; margin-top: 4px;">✅ Windows x64</div>
                  </div>
                  <div style="display: flex; gap: 8px;">
-                   <button class="legacy-dl-btn disabled" data-version="v1.1" data-os="windows" style="background: var(--muted); color: rgba(255, 255, 255, 0.6); border: none; padding: 8px 16px; border-radius: 6px; cursor: not-allowed; font-size: 0.85rem; transition: all 0.3s ease; opacity: 0.5;" disabled>Windows</button>
-                   <button class="legacy-dl-btn disabled" data-version="v1.1" data-os="macos" style="background: var(--muted); color: rgba(255, 255, 255, 0.6); border: none; padding: 8px 16px; border-radius: 6px; cursor: not-allowed; font-size: 0.85rem; transition: all 0.3s ease; opacity: 0.5;" disabled>macOS</button>
-                   <button class="legacy-dl-btn disabled" data-version="v1.1" data-os="linux" style="background: var(--muted); color: rgba(255, 255, 255, 0.6); border: none; padding: 8px 16px; border-radius: 6px; cursor: not-allowed; font-size: 0.85rem; transition: all 0.3s ease; opacity: 0.5;" disabled>Linux</button>
+                  <button class="legacy-dl-btn" data-version="v1.1.4" data-os="windows" data-arch="x64" data-file="SAWS-DataTransfer-v1.1.4-windows-x64.exe" style="background: var(--accent); color: white; border: none; padding: 8px 16px; border-radius: 6px; cursor: pointer; font-size: 0.85rem; transition: all 0.3s ease;">Windows x64</button>
                  </div>
                </div>
              </div>
             
-                         <!-- v1.0 -->
+            <!-- v1.1.3 -->
              <div class="legacy-version-card" style="border: 1px solid var(--glass-border); border-radius: 12px; padding: 20px; background: var(--glass-bg); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);">
                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
                  <div>
-                   <div style="font-weight: 600; color: var(--fg);">v1.0 (2025-05-10)</div>
+                  <div style="font-weight: 600; color: var(--fg);">v1.1.3 (2025-06-15)</div>
+                  <div style="color: var(--muted); font-size: 0.9rem;">기본 기능 포함</div>
+                  <div style="color: var(--accent); font-size: 0.8rem; margin-top: 4px;">✅ Windows x64</div>
+                </div>
+                <div style="display: flex; gap: 8px;">
+                  <button class="legacy-dl-btn" data-version="v1.1.3" data-os="windows" data-arch="x64" data-file="SAWS-DataTransfer-v1.1.3-windows-x64.exe" style="background: var(--accent); color: white; border: none; padding: 8px 16px; border-radius: 6px; cursor: pointer; font-size: 0.85rem; transition: all 0.3s ease;">Windows x64</button>
+                </div>
+              </div>
+            </div>
+            
+            <!-- v1.1.2 -->
+            <div class="legacy-version-card" style="border: 1px solid var(--glass-border); border-radius: 12px; padding: 20px; background: var(--glass-bg); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+                <div>
+                  <div style="font-weight: 600; color: var(--fg);">v1.1.2 (2025-06-10)</div>
+                  <div style="color: var(--muted); font-size: 0.9rem;">기본 기능 포함</div>
+                  <div style="color: var(--accent); font-size: 0.8rem; margin-top: 4px;">✅ Windows x64</div>
+                </div>
+                <div style="display: flex; gap: 8px;">
+                  <button class="legacy-dl-btn" data-version="v1.1.2" data-os="windows" data-arch="x64" data-file="SAWS-DataTransfer-v1.1.2-windows-x64.exe" style="background: var(--accent); color: white; border: none; padding: 8px 16px; border-radius: 6px; cursor: pointer; font-size: 0.85rem; transition: all 0.3s ease;">Windows x64</button>
+                </div>
+              </div>
+            </div>
+            
+            <!-- v1.1.1 -->
+            <div class="legacy-version-card" style="border: 1px solid var(--glass-border); border-radius: 12px; padding: 20px; background: var(--glass-bg); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+                <div>
+                  <div style="font-weight: 600; color: var(--fg);">v1.1.1 (2025-06-05)</div>
+                  <div style="color: var(--muted); font-size: 0.9rem;">기본 기능 포함</div>
+                  <div style="color: var(--accent); font-size: 0.8rem; margin-top: 4px;">✅ Windows x64</div>
+                </div>
+                <div style="display: flex; gap: 8px;">
+                  <button class="legacy-dl-btn" data-version="v1.1.1" data-os="windows" data-arch="x64" data-file="SAWS-DataTransfer-v1.1.1-windows-x64.exe" style="background: var(--accent); color: white; border: none; padding: 8px 16px; border-radius: 6px; cursor: pointer; font-size: 0.85rem; transition: all 0.3s ease;">Windows x64</button>
+                </div>
+              </div>
+            </div>
+            
+            <!-- v1.1.0 -->
+            <div class="legacy-version-card" style="border: 1px solid var(--glass-border); border-radius: 12px; padding: 20px; background: var(--glass-bg); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+                <div>
+                  <div style="font-weight: 600; color: var(--fg);">v1.1.0 (2025-06-01)</div>
+                  <div style="color: var(--muted); font-size: 0.9rem;">기본 기능 포함</div>
+                  <div style="color: var(--accent); font-size: 0.8rem; margin-top: 4px;">✅ Windows x64</div>
+                </div>
+                <div style="display: flex; gap: 8px;">
+                  <button class="legacy-dl-btn" data-version="v1.1.0" data-os="windows" data-arch="x64" data-file="SAWS-DataTransfer-v1.1.0-windows-x64.exe" style="background: var(--accent); color: white; border: none; padding: 8px 16px; border-radius: 6px; cursor: pointer; font-size: 0.85rem; transition: all 0.3s ease;">Windows x64</button>
+                </div>
+              </div>
+            </div>
+            
+            <!-- v1.0.10 -->
+            <div class="legacy-version-card" style="border: 1px solid var(--glass-border); border-radius: 12px; padding: 20px; background: var(--glass-bg); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+                <div>
+                  <div style="font-weight: 600; color: var(--fg);">v1.0.10 (2025-05-25)</div>
                    <div style="color: var(--muted); font-size: 0.9rem;">최초 릴리즈</div>
+                  <div style="color: var(--accent); font-size: 0.8rem; margin-top: 4px;">✅ Windows x64</div>
                  </div>
                  <div style="display: flex; gap: 8px;">
-                   <button class="legacy-dl-btn disabled" data-version="v1.0" data-os="windows" style="background: var(--muted); color: rgba(255, 255, 255, 0.6); border: none; padding: 8px 16px; border-radius: 6px; cursor: not-allowed; font-size: 0.85rem; transition: all 0.3s ease; opacity: 0.5;" disabled>Windows</button>
-                   <button class="legacy-dl-btn disabled" data-version="v1.0" data-os="macos" style="background: var(--muted); color: rgba(255, 255, 255, 0.6); border: none; padding: 8px 16px; border-radius: 6px; cursor: not-allowed; font-size: 0.85rem; transition: all 0.3s ease; opacity: 0.5;" disabled>macOS</button>
-                   <button class="legacy-dl-btn disabled" data-version="v1.0" data-os="linux" style="background: var(--muted); color: rgba(255, 255, 255, 0.6); border: none; padding: 8px 16px; border-radius: 6px; cursor: not-allowed; font-size: 0.85rem; transition: all 0.3s ease; opacity: 0.5;" disabled>Linux</button>
+                  <button class="legacy-dl-btn" data-version="v1.0.10" data-os="windows" data-arch="x64" data-file="SAWS-DataTransfer-v1.0.10-windows-x64.exe" style="background: var(--accent); color: white; border: none; padding: 8px 16px; border-radius: 6px; cursor: pointer; font-size: 0.85rem; transition: all 0.3s ease;">Windows x64</button>
                  </div>
                </div>
              </div>
+            
+            <!-- v1.0.9.5 -->
+            <div class="legacy-version-card" style="border: 1px solid var(--glass-border); border-radius: 12px; padding: 20px; background: var(--glass-bg); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+                <div>
+                  <div style="font-weight: 600; color: var(--fg);">v1.0.9.5 (2025-05-20)</div>
+                  <div style="color: var(--muted); font-size: 0.9rem;">최초 릴리즈</div>
+                  <div style="color: var(--accent); font-size: 0.8rem; margin-top: 4px;">✅ Windows x64</div>
+                </div>
+                <div style="display: flex; gap: 8px;">
+                  <button class="legacy-dl-btn" data-version="v1.0.9.5" data-os="windows" data-arch="x64" data-file="SAWS-DataTransfer-v1.0.9.5-windows-x64.exe" style="background: var(--accent); color: white; border: none; padding: 8px 16px; border-radius: 6px; cursor: pointer; font-size: 0.85rem; transition: all 0.3s ease;">Windows x64</button>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -977,7 +1059,7 @@
       }
     };
 
-    // 이전 버전 다운로드 URL 매핑
+    // 이전 버전 다운로드 URL 매핑 (실제 파일 경로)
     const LEGACY_DOWNLOAD_URLS = {
       'v1.2': {
         'windows': {
@@ -995,30 +1077,30 @@
       },
       'v1.1': {
         'windows': {
-          'x64': 'dist/windows/SAWS-DataTransfer-v1.2-windows-x64.exe', // Placeholder
-          'arm64': 'dist/windows/SAWS-DataTransfer-v1.2-windows-x64.exe' // Placeholder
+          'x64': 'dist/windows/SAWS-DataTransfer-v1.1.5-windows-x64.exe',
+          'arm64': 'dist/windows/SAWS-DataTransfer-v1.1.5-windows-x64.exe' // v1.1은 주로 x64만 지원
         },
         'macos': {
-          'x64': 'dist/windows/SAWS-DataTransfer-v1.2-windows-x64.exe', // Placeholder
-          'arm64': 'dist/windows/SAWS-DataTransfer-v1.2-windows-x64.exe' // Placeholder
+          'x64': 'dist/macos/SAWS-DataTransfer-v1.2-macos-x64', // v1.1 macOS는 v1.2로 대체
+          'arm64': 'dist/macos/SAWS-DataTransfer-v1.2-macos-arm64'
         },
         'linux': {
-          'x64': 'dist/windows/SAWS-DataTransfer-v1.2-windows-x64.exe', // Placeholder
-          'arm64': 'dist/windows/SAWS-DataTransfer-v1.2-windows-x64.exe' // Placeholder
+          'x64': 'dist/linux/SAWS-DataTransfer-v1.2-linux-x64', // v1.1 Linux는 v1.2로 대체
+          'arm64': 'dist/linux/SAWS-DataTransfer-v1.2-linux-arm64'
         }
       },
       'v1.0': {
         'windows': {
-          'x64': 'dist/windows/SAWS-DataTransfer-v1.2-windows-x64.exe', // Placeholder
-          'arm64': 'dist/windows/SAWS-DataTransfer-v1.2-windows-x64.exe' // Placeholder
+          'x64': 'dist/windows/SAWS-DataTransfer-v1.0.10-windows-x64.exe',
+          'arm64': 'dist/windows/SAWS-DataTransfer-v1.0.10-windows-x64.exe' // v1.0은 주로 x64만 지원
         },
         'macos': {
-          'x64': 'dist/windows/SAWS-DataTransfer-v1.2-windows-x64.exe', // Placeholder
-          'arm64': 'dist/windows/SAWS-DataTransfer-v1.2-windows-x64.exe' // Placeholder
+          'x64': 'dist/macos/SAWS-DataTransfer-v1.2-macos-x64', // v1.0 macOS는 v1.2로 대체
+          'arm64': 'dist/macos/SAWS-DataTransfer-v1.2-macos-arm64'
         },
         'linux': {
-          'x64': 'dist/windows/SAWS-DataTransfer-v1.2-windows-x64.exe', // Placeholder
-          'arm64': 'dist/windows/SAWS-DataTransfer-v1.2-windows-x64.exe' // Placeholder
+          'x64': 'dist/linux/SAWS-DataTransfer-v1.2-linux-x64', // v1.0 Linux는 v1.2로 대체
+          'arm64': 'dist/linux/SAWS-DataTransfer-v1.2-linux-arm64'
         }
       }
     };
@@ -1200,18 +1282,71 @@
          const version = btn.dataset.version;
          const os = btn.dataset.os;
          
-         // 기본적으로 x64 아키텍처 사용 (이전 버전은 주로 x64만 지원)
-         const arch = 'x64';
+         // 파일명이 직접 지정된 경우 (새로운 방식)
+         if (btn.dataset.file) {
+           const fileName = btn.dataset.file;
+           const filePath = `dist/${os}/${fileName}`;
+           
+           // 절대 URL 생성
+           const baseUrl = 'https://octxxiii.github.io/SDTS-Pages';
+           const fullUrl = `${baseUrl}/${filePath}`;
+           
+           console.log(`직접 다운로드: ${fileName} - ${fullUrl}`);
+           
+           // 다운로드 시작
+           const link = document.createElement('a');
+           link.href = fullUrl;
+           link.download = fileName;
+           document.body.appendChild(link);
+           link.click();
+           document.body.removeChild(link);
+           
+           // 사용자에게 피드백 제공
+           const originalText = btn.textContent;
+           btn.textContent = '다운로드 중...';
+           btn.style.background = 'var(--muted)';
+           btn.style.cursor = 'not-allowed';
+           
+           setTimeout(() => {
+             btn.textContent = '완료!';
+             btn.style.background = '#34c759';
+             
+             setTimeout(() => {
+               btn.textContent = originalText;
+               btn.style.background = 'var(--accent)';
+               btn.style.cursor = 'pointer';
+             }, 2000);
+           }, 1000);
+           
+                    // 백업 다운로드 (필요시에만)
+         // setTimeout(() => {
+         //   window.open(fullUrl, '_blank');
+         // }, 500);
+           
+           return;
+         }
+         
+         // 기존 방식 (URL 매핑 사용)
+         let arch = 'x64';
+         if (version === 'v1.2' && (os === 'macos' || os === 'linux')) {
+           arch = confirm('ARM64 아키텍처를 사용하시나요? (취소하면 x64)') ? 'arm64' : 'x64';
+         }
+         
          const url = LEGACY_DOWNLOAD_URLS[version][os][arch];
          
          // 절대 URL 생성
          const baseUrl = 'https://octxxiii.github.io/SDTS-Pages';
          const fullUrl = `${baseUrl}/${url}`;
          
+         // 파일명 추출
+         const fileName = url.split('/').pop();
+         
+         console.log(`다운로드 시작: ${version} ${os} ${arch} - ${fileName}`);
+         
          // 다운로드 시작
          const link = document.createElement('a');
          link.href = fullUrl;
-         link.download = '';
+         link.download = fileName;
          document.body.appendChild(link);
          link.click();
          document.body.removeChild(link);
@@ -1232,6 +1367,11 @@
              btn.style.cursor = 'pointer';
            }, 2000);
          }, 1000);
+         
+         // 백업 다운로드 (필요시에만)
+         // setTimeout(() => {
+         //   window.open(fullUrl, '_blank');
+         // }, 500);
        });
      });
 
